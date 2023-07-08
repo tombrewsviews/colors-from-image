@@ -2,6 +2,7 @@ import cv2
 from sklearn.cluster import KMeans
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
 
 def load_image(image_path):
     image = cv2.imread(image_path)
@@ -20,7 +21,12 @@ def plot_colors(colors):
     plt.axis("off")
     plt.imshow([colors], aspect='auto')
 
-image = load_image('image.jpg')
-dominant_colors = get_dominant_colors(image)
-plot_colors(dominant_colors)
-plt.show()
+def main(argv):
+    image_path = argv[1]
+    image = load_image(image_path)
+    dominant_colors = get_dominant_colors(image)
+    plot_colors(dominant_colors)
+    plt.show()
+
+if __name__ == "__main__":
+    main(sys.argv)
